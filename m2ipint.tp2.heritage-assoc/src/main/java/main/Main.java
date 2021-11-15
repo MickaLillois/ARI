@@ -28,9 +28,17 @@ public class Main {
         anEmp.setFirstname("Rémi");
         anEmp.setAge(23);
         em.persist(anEmp);
+        Address anAddress = new Address();
+        anAddress.setCity("Lille Hellemmes");
+        anAddress.setCountry("FRANCE");
+        anAddress.setStreet("Rue Victor Hugo");
+        anAddress.setStreetNumber(42);
+        anAddress.setZipCode("59260");
         
+        anEmp.addAddress(anAddress);
         anEmp.setCompany(aCompany);
         aCompany.getEmployeeList().add(anEmp);
+        em.persist(anAddress);
         em.persist(aCompany);
         em.persist(anEmp);
         

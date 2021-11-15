@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Employee {
@@ -18,6 +19,9 @@ public class Employee {
 	
 	@ManyToOne
 	private Company company;
+	
+	@OneToOne
+	private Address anAddress;
 	
     public Company getCompany() {
 		return company;
@@ -52,7 +56,18 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", lastname=" + lastname + ", firstname=" + firstname + ", age=" + age
-				+ ", aCompany=" + company + "]";
+				+ ", company=" + company + ", anAddress=" + anAddress + "]";
+	}
+	public Address getAnAddress() {
+		return anAddress;
+	}
+	public void setAnAddress(Address anAddress) {
+		this.anAddress = anAddress;
+	}
+	
+	public void addAddress(Address anAddress) {
+		this.anAddress = anAddress;
+		anAddress.setAnEmp(this);
 	}
 	
 }
