@@ -18,16 +18,21 @@ public class Main {
         factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
 
-        // create new todo
         em.getTransaction().begin();
+        
+        
         Company aCompany = new Company();
         aCompany.setName("Boulangerie Nicolas");
-        em.persist(aCompany);
-        Employee anEmp = new Employee();
-        anEmp.setLastname("JOURNAULT");
-        anEmp.setFirstname("Rémi");
-        anEmp.setAge(23);
-        em.persist(anEmp);
+        
+        Employee anEmp1 = new Employee();
+        anEmp1.setLastname("JOURNAULT");
+        anEmp1.setFirstname("Rémi");
+        anEmp1.setAge(23);
+        Employee anEmp2 = new Employee();
+        anEmp2.setLastname("BAUDRY");
+        anEmp2.setFirstname("Manon");
+        anEmp2.setAge(56);
+        
         Address anAddress = new Address();
         anAddress.setCity("Lille Hellemmes");
         anAddress.setCountry("FRANCE");
@@ -35,12 +40,26 @@ public class Main {
         anAddress.setStreetNumber(42);
         anAddress.setZipCode("59260");
         
-        anEmp.addAddress(anAddress);
-        anEmp.setCompany(aCompany);
-        aCompany.getEmployeeList().add(anEmp);
+        Project aProj1 = new Project();
+        aProj1.setName("Projet Cool");
+        Project aProj2 = new Project();
+        aProj2.setName("Projet Super Cool");
+        
+        anEmp1.addProject(aProj1);
+        anEmp1.addProject(aProj2);
+        anEmp2.addProject(aProj1);
+        anEmp2.addProject(aProj2);
+        
+        anEmp1.addAddress(anAddress);
+        anEmp1.setCompany(aCompany);
+        aCompany.getEmployeeList().add(anEmp1);
+        
         em.persist(anAddress);
         em.persist(aCompany);
-        em.persist(anEmp);
+        em.persist(anEmp1);
+        em.persist(anEmp2);
+        em.persist(aProj1);
+        em.persist(aProj2);
         
         // read the existing entries and write to console
         Query q = em.createQuery("select c from Company c");

@@ -1,15 +1,15 @@
 {
 	"folders": {},
 	"connections": {
-		"derby-17d243ddf84-397c4d60bfbd68e3": {
+		"derby-17d241c9def-dcb5f0b0387408b": {
 			"provider": "generic",
 			"driver": "derby",
-			"name": "ipint-tp2-entreprise-test",
+			"name": "ipint-tp2-entreprise",
 			"save-password": true,
 			"read-only": false,
 			"configuration": {
-				"database": "D:\\M2_MIAGE\\ARI\\databases\\ipint-tp2-entreprise-test",
-				"url": "jdbc:derby:D:\\M2_MIAGE\\ARI\\databases\\ipint-tp2-entreprise-test",
+				"database": "D:\\M2_MIAGE\\ARI\\databases\\ipint-tp2-entreprise",
+				"url": "jdbc:derby:D:\\M2_MIAGE\\ARI\\databases\\ipint-tp2-entreprise",
 				"type": "dev",
 				"auth-model": "native",
 				"handlers": {}

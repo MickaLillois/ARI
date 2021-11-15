@@ -1,9 +1,13 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -22,6 +26,9 @@ public class Employee {
 	
 	@OneToOne
 	private Address anAddress;
+	
+	@ManyToMany
+	private List<Project> projectList = new ArrayList<Project>();
 	
     public Company getCompany() {
 		return company;
@@ -64,10 +71,19 @@ public class Employee {
 	public void setAnAddress(Address anAddress) {
 		this.anAddress = anAddress;
 	}
-	
+	public List<Project> getProjectList() {
+		return projectList;
+	}
+	public void setProjectList(List<Project> projectList) {
+		this.projectList = projectList;
+	}
 	public void addAddress(Address anAddress) {
 		this.anAddress = anAddress;
 		anAddress.setAnEmp(this);
 	}
 	
+	public void addProject(Project aProj) {
+		this.projectList.add(aProj);
+		aProj.getEmployeeList().add(this);
+	}
 }

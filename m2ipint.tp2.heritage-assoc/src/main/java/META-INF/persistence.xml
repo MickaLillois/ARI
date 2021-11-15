@@ -7,11 +7,12 @@
 		<class>model.Company</class>
 		<class>model.Employee</class>
 		<class>model.Address</class>
+		<class>model.Project</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.iapi.jdbc.AutoloadedDriver" />
                 <property name="javax.persistence.jdbc.url"
-                value="jdbc:derby:D:\M2_MIAGE\ARI\databases\ipint-tp2-entreprise;create=true" />
+                value="jdbc:derby:D:\M2_MIAGE\ARI\databases\ipint-tp2-entreprise-test;create=true" />
             <property name="javax.persistence.jdbc.user" value="" />
             <property name="javax.persistence.jdbc.password" value="" />
 
