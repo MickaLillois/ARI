@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Mon Nov 15 15:01:07 CET 2021:
+Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585) : instance a816c00e-017d-23e6-c8bd-0000070cac00 
+dans le répertoire de base de données D:\M2_MIAGE\ARI\databases\ipint-tp2-entreprise avec le chargeur de classe jdk.internal.loader.ClassLoaders$AppClassLoader@c387f44
+Chargé de file:/D:/M2_MIAGE/ARI/db-derby-10.15.2.0-bin/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=14.0.2+12-46
+user.dir=D:\M2_MIAGE\ARI\GIT_ARI\m2ipint.tp2.heritage-assoc
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Chargeur de classe de la base de données démarré - derby.database.classpath = ''
