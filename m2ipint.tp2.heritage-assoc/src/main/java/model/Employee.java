@@ -17,13 +17,13 @@ public class Employee {
 	private int age;
 	
 	@ManyToOne
-	private Company aCompany;
+	private Company company;
 	
-    public Company getaCompany() {
-		return aCompany;
+    public Company getCompany() {
+		return company;
 	}
-	public void setaCompany(Company aCompany) {
-		this.aCompany = aCompany;
+	public void setCompany(Company aCompany) {
+		this.company = aCompany;
 	}
 	public int getId() {
 		return id;
@@ -31,10 +31,10 @@ public class Employee {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getLastName() {
+	public String getLastname() {
 		return lastname;
 	}
-	public void setLastName(String lastname) {
+	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
 	public String getFirstname() {
@@ -52,7 +52,7 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", lastname=" + lastname + ", firstname=" + firstname + ", age=" + age
-				+ ", aCompany=" + aCompany + "]";
+				+ ", aCompany=" + company + "]";
 	}
 	
 }

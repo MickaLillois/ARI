@@ -23,15 +23,30 @@ public class Main {
         Company aCompany = new Company();
         aCompany.setName("Boulangerie Nicolas");
         em.persist(aCompany);
-        em.getTransaction().commit();
+        Employee anEmp = new Employee();
+        anEmp.setLastname("JOURNAULT");
+        anEmp.setFirstname("Rémi");
+        anEmp.setAge(23);
+        em.persist(anEmp);
+        
+        anEmp.setCompany(aCompany);
+        aCompany.getEmployeeList().add(anEmp);
+        em.persist(aCompany);
+        em.persist(anEmp);
         
         // read the existing entries and write to console
         Query q = em.createQuery("select c from Company c");
         List<Company> compList = q.getResultList();
         for (Company comp : compList) {
             System.out.println(comp);
+            for(Employee emp : comp.getEmployeeList()) {
+            	System.out.println(emp);
+            }
         }
-        System.out.println("Size: " + compList.size());
+
+        em.getTransaction().commit();
+        
+        
 
         em.close();
     }

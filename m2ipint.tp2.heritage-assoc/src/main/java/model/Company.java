@@ -17,7 +17,7 @@ public class Company {
     private int id;
     private String name;
     
-    @OneToMany
+    @OneToMany(mappedBy = "company")
     private List<Employee> employeeList = new ArrayList<Employee>();
 	
     public int getId() {
@@ -41,6 +41,6 @@ public class Company {
 	
 	@Override
 	public String toString() {
-		return "Company [id=" + id + ", name=" + name + ", employeeList=" + employeeList + "]";
+		return "Company [id=" + id + ", name=" + name + ", Nb employees=" + employeeList.size() + "]";
 	}
 }
