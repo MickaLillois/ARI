@@ -84,7 +84,13 @@ public class Employee {
 		return team;
 	}
 	public void setTeam(Team team) {
-		this.team = team;
+		if(this.team == null) {
+			this.team = team;
+			team.getEmployeeList().add(this);
+		}
+		else {
+			System.out.println("Forbidden : a team is already assigned for this employee.");
+		}
 	}
 	public void addAddress(Address anAddress) {
 		this.anAddress = anAddress;
@@ -95,8 +101,8 @@ public class Employee {
 		this.projectList.add(aProj);
 		aProj.getEmployeeList().add(this);
 	}
-	public void addTeam(Team aTeam) {
-		this.team = aTeam;
-		aTeam.getEmployeeList().add(this);
-	}
+	/*
+	 * public void addTeam(Team aTeam) { this.team = aTeam;
+	 * aTeam.getEmployeeList().add(this); }
+	 */
 }

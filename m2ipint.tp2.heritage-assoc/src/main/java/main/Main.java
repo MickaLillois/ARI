@@ -36,7 +36,9 @@ public class Main {
         anEmp2.setFirstname("Manon");
         anEmp2.setAge(56);
         
-        anEmp1.addTeam(aTeam);
+        //anEmp1.addTeam(aTeam);
+        anEmp1.setTeam(aTeam);
+        anEmp1.setTeam(aTeam);
         
         Address anAddress = new Address();
         anAddress.setCity("Lille Hellemmes");
