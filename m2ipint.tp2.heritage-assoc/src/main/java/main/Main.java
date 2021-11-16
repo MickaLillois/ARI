@@ -23,6 +23,9 @@ public class Main {
         
         Company aCompany = new Company();
         aCompany.setName("Boulangerie Nicolas");
+
+        Team aTeam = new Team();
+        aTeam.setName("Team BS");
         
         Employee anEmp1 = new Employee();
         anEmp1.setLastname("JOURNAULT");
@@ -32,6 +35,8 @@ public class Main {
         anEmp2.setLastname("BAUDRY");
         anEmp2.setFirstname("Manon");
         anEmp2.setAge(56);
+        
+        anEmp1.addTeam(aTeam);
         
         Address anAddress = new Address();
         anAddress.setCity("Lille Hellemmes");
@@ -52,9 +57,12 @@ public class Main {
         
         anEmp1.addAddress(anAddress);
         anEmp1.setCompany(aCompany);
+        anEmp2.setCompany(aCompany);
         aCompany.getEmployeeList().add(anEmp1);
+        aCompany.getEmployeeList().add(anEmp2);
         
         em.persist(anAddress);
+        em.persist(aTeam);
         em.persist(aCompany);
         em.persist(anEmp1);
         em.persist(anEmp2);

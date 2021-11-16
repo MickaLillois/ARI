@@ -24,6 +24,9 @@ public class Employee {
 	@ManyToOne
 	private Company company;
 	
+	@ManyToOne
+	private Team team;
+	
 	@OneToOne
 	private Address anAddress;
 	
@@ -63,7 +66,7 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", lastname=" + lastname + ", firstname=" + firstname + ", age=" + age
-				+ ", company=" + company + ", anAddress=" + anAddress + "]";
+				+ ", company=" + company + ", address=" + anAddress + ", team=" + team + "]";
 	}
 	public Address getAnAddress() {
 		return anAddress;
@@ -77,6 +80,12 @@ public class Employee {
 	public void setProjectList(List<Project> projectList) {
 		this.projectList = projectList;
 	}
+	public Team getTeam() {
+		return team;
+	}
+	public void setTeam(Team team) {
+		this.team = team;
+	}
 	public void addAddress(Address anAddress) {
 		this.anAddress = anAddress;
 		anAddress.setAnEmp(this);
@@ -85,5 +94,9 @@ public class Employee {
 	public void addProject(Project aProj) {
 		this.projectList.add(aProj);
 		aProj.getEmployeeList().add(this);
+	}
+	public void addTeam(Team aTeam) {
+		this.team = aTeam;
+		aTeam.getEmployeeList().add(this);
 	}
 }

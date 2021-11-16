@@ -8,6 +8,7 @@
 		<class>model.Employee</class>
 		<class>model.Address</class>
 		<class>model.Project</class>
+		<class>model.Team</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.iapi.jdbc.AutoloadedDriver" />
