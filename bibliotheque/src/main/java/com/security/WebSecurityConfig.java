@@ -22,23 +22,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				//.anyRequest().authenticated()
 				.and()
 			.formLogin()
-				//.loginPage("/login")
+				.loginPage("/login")
 				.permitAll()
 				.and()
 			.logout()
 				.permitAll();
 	}
 
-//	@Bean
-//	@Override
-//	public UserDetailsService userDetailsService() {
-//		UserDetails user =
-//			 User.withDefaultPasswordEncoder()
-//				.username("user")
-//				.password("password")
-//				.roles("USER")
-//				.build();
-//
-//		return new InMemoryUserDetailsManager(user);
-//	}
+	@Bean
+	@Override
+	public UserDetailsService userDetailsService() {
+		UserDetails user =
+			 User.withDefaultPasswordEncoder()
+				.username("user")
+				.password("password")
+				.roles("USER")
+				.build();
+
+		return new InMemoryUserDetailsManager(user);
+	}
 }

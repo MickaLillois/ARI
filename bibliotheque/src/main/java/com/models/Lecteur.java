@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.Data;
+
+@Data
 @Entity
 public class Lecteur {
 
@@ -21,53 +24,11 @@ public class Lecteur {
 	protected Lecteur() {}
 
 	public Lecteur(String prenom, String nom, LocalDateTime dateNaissance, int idBibliotheque) {
-		super();
 		this.prenom = prenom;
 		this.nom = nom;
 		this.dateNaissance = dateNaissance;
 		this.idBibliotheque = idBibliotheque;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getPrenom() {
-		return prenom;
-	}
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public LocalDateTime getDateNaissance() {
-		return dateNaissance;
-	}
-
-	public void setDateNaissance(LocalDateTime dateNaissance) {
-		this.dateNaissance = dateNaissance;
-	}
-
-	
-	public int getIdBibliotheque() {
-		return idBibliotheque;
-	}
-
-	
-	public void setIdBibliotheque(int idBibliotheque) {
-		this.idBibliotheque = idBibliotheque;
-	}
 	
 }
