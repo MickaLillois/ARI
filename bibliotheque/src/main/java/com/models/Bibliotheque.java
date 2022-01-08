@@ -2,11 +2,16 @@ package com.models;
 
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import lombok.Data;
+
+@Entity
+@Data
 public class Bibliotheque {
 	
 	@Id
@@ -23,4 +28,12 @@ public class Bibliotheque {
 	@OneToMany
 	private List<Livre> lesLivres;
 
+	protected Bibliotheque() {}
+
+	public Bibliotheque(String nom) {
+		super();
+		this.nom = nom;
+	};
+	
+	
 }

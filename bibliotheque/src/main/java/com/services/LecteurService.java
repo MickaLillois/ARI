@@ -10,8 +10,8 @@ import com.repositories.LecteurRepository;
 
 import lombok.Data;
 
-@Data
 @Service
+@Data
 public class LecteurService {
 
     @Autowired
