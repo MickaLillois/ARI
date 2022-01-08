@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 public class Auteur {
@@ -16,11 +18,12 @@ public class Auteur {
 	private int id;
 	private String prenom;
 	private String nom;
-	private LocalDateTime dateNaissance;
-	private int idBibliotheque;
-	
-	@OneToMany
+
+	@ManyToMany
 	private List<Integer> lesLivres = new ArrayList<Integer>();
+	
+	@ManyToOne
+	private Bibliotheque laBibliotheque;
 	
 	protected Auteur() {}
 }
