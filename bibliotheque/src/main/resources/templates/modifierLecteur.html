@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div>
+<form method="post" th:action="@{/updateLecteur/{path}(path=${lecteur.id})}">
+	<div>
+		<label for="prenom">Prénom : </label> <input type="text" th:value="${lecteur.prenom}" id="prenom" name="prenom">
+	</div>
+    <div>
+		<label for="nom">Nom : </label> <input type="text" th:value="${lecteur.nom}" id="nom" name="nom">
+	</div>
+    <button type="submit">Modifier</button>
+</form>
+</div>
+</body>
+</html>

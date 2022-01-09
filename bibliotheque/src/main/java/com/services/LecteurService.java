@@ -24,13 +24,18 @@ public class LecteurService {
     public Iterable<Lecteur> getLecteurs() {
         return lecteurRepository.findAll();
     }
+    
+    public void createLecteur(String prenom, String nom) {
+    	Lecteur unLecteur = new Lecteur(prenom, nom);
+    	lecteurRepository.save(unLecteur);
+    }
 
     public void deleteLecteur(final Long id) {
     	lecteurRepository.deleteById(id);
     }
 
-    public Lecteur saveLecteur(Lecteur employee) {
-    	Lecteur savedLecteur = lecteurRepository.save(employee);
+    public Lecteur saveLecteur(Lecteur lecteur) {
+    	Lecteur savedLecteur = lecteurRepository.save(lecteur);
         return savedLecteur;
     }
 

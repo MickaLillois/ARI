@@ -16,22 +16,14 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
-//	@Override
-//	protected void configure(HttpSecurity http) throws Exception {
-//		http.authorizeRequests()
-//        .antMatchers("/h2/**").hasRole("ADMIN")//allow h2 console access to admins only
-//        .anyRequest().authenticated()//all other urls can be access by any authenticated role
-//        .and().formLogin()//enable form login instead of basic login
-//        .and().csrf().ignoringAntMatchers("/h2-console/**")//don't apply CSRF protection to /h2-console
-//        .and().headers().frameOptions().sameOrigin();//allow use of frame to same origin urls
-//	}
+	@Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.authorizeRequests().antMatchers("/").permitAll().and()
+                .authorizeRequests().antMatchers("/h2/**").permitAll();
+        httpSecurity.csrf().disable();
+        httpSecurity.headers().frameOptions().disable();
+    }
 
-//	@Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web
-//            .ignoring()
-//            .antMatchers("/h2/**").permitAll();
-//    }
 
 //	@Bean
 //	@Override
