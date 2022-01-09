@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.exceptions.InvalidStringException;
 import com.models.Lecteur;
 import com.services.LecteurService;
+import com.tools.Tools;
 
 @Controller
 public class LecteurController {
@@ -30,9 +32,14 @@ public class LecteurController {
     }
     
     @PostMapping("/createLecteur")
-    public String createLecteur(@RequestParam String prenom,@RequestParam String nom) {
-        lecteurService.createLecteur(prenom, nom);
-        return "home";
+    public String createLecteur(@RequestParam String prenom,@RequestParam String nom) throws Exception {
+    	if(Tools.isValidString(prenom) && Tools.isValidString(nom)) {
+    		lecteurService.createLecteur(prenom, nom);
+	        return "home";
+	    }
+		else {
+			throw new InvalidStringException();
+		}
     }
     
     
@@ -53,15 +60,20 @@ public class LecteurController {
     }
     
     @PostMapping("/updateLecteur/{id}")
-    public String updateLecteur(@PathVariable("id") String id, @RequestParam String prenom, @RequestParam String nom) {
-    	Optional<Lecteur> leLecteur = lecteurService.getLecteur(Long.parseLong(id));
-        if(leLecteur.isPresent()) {
-        	Lecteur notnullLecteur = leLecteur.get();
-        	notnullLecteur.setPrenom(prenom);
-        	notnullLecteur.setNom(nom);
-        	lecteurService.saveLecteur(notnullLecteur);
-        }
-    	return "redirect:/getLecteurs";
+    public String updateLecteur(@PathVariable("id") String id, @RequestParam String prenom, @RequestParam String nom) throws InvalidStringException {
+    	if(Tools.isValidString(prenom) && Tools.isValidString(nom)) {
+    		Optional<Lecteur> leLecteur = lecteurService.getLecteur(Long.parseLong(id));
+            if(leLecteur.isPresent()) {
+            	Lecteur notnullLecteur = leLecteur.get();
+            	notnullLecteur.setPrenom(prenom);
+            	notnullLecteur.setNom(nom);
+            	lecteurService.saveLecteur(notnullLecteur);
+            }
+            return "redirect:/getLecteurs";
+    	}
+    	else {
+    		throw new InvalidStringException();
+    	}
     }
 
 }

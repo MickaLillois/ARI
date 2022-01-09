@@ -5,8 +5,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.exceptions.InvalidStringException;
 import com.models.Lecteur;
 import com.repositories.LecteurRepository;
+import com.tools.Tools;
 
 import lombok.Data;
 
@@ -25,8 +27,8 @@ public class LecteurService {
         return lecteurRepository.findAll();
     }
     
-    public void createLecteur(String prenom, String nom) {
-    	Lecteur unLecteur = new Lecteur(prenom, nom);
+    public void createLecteur(String prenom, String nom){
+		Lecteur unLecteur = new Lecteur(prenom, nom);
     	lecteurRepository.save(unLecteur);
     }
 

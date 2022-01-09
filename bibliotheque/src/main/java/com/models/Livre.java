@@ -15,7 +15,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Livre {
+public abstract class Livre {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -31,15 +31,47 @@ public class Livre {
 	
 	protected Livre() {}
 
-	public Livre(String titre) {
+	protected Livre(String titre) {
 		super();
 		this.titre = titre;
 	}
 
-	public Livre(String titre, List<Auteur> lesAuteurs, Bibliotheque laBiblio) {
+	protected Livre(String titre, Bibliotheque laBiblio) {
 		super();
 		this.titre = titre;
+		//this.lesAuteurs = lesAuteurs;
+		this.laBiblio = laBiblio;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getTitre() {
+		return titre;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+
+	public List<Auteur> getLesAuteurs() {
+		return lesAuteurs;
+	}
+
+	public void setLesAuteurs(List<Auteur> lesAuteurs) {
 		this.lesAuteurs = lesAuteurs;
+	}
+
+	public Bibliotheque getLaBiblio() {
+		return laBiblio;
+	}
+
+	public void setLaBiblio(Bibliotheque laBiblio) {
 		this.laBiblio = laBiblio;
 	}
 	

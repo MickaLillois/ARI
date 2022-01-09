@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
+    
+    <head>
+        <meta charset="UTF-8">
+        <title>Admin</title>
+    </head>
+    <body>
+        <h2 class="h2">Liste des users</h2>
+        <span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+		<span th:text="${#authentication.getPrincipal().authorities}"></span>
+        <br><br>
+        <a th:href="@{/home}">Menu lecteur</a>
+    
+    </body>
+</html>

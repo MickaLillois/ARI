@@ -10,4 +10,12 @@ public class Roman extends Livre {
 
 	protected Roman() {}
 	
+	public Roman(String titre) {
+		super(titre);
+	}
+
+	public Roman(String titre, Bibliotheque laBiblio) {
+		super(titre,laBiblio);
+	}
+	
 }
