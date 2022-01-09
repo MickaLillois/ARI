@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.exceptions.InvalidStringException;
+import com.models.Bibliotheque;
 import com.models.Lecteur;
 import com.repositories.LecteurRepository;
 import com.tools.Tools;
@@ -27,8 +28,8 @@ public class LecteurService {
         return lecteurRepository.findAll();
     }
     
-    public void createLecteur(String prenom, String nom){
-		Lecteur unLecteur = new Lecteur(prenom, nom);
+    public void createLecteur(String prenom, String nom, Bibliotheque laBiblio){
+		Lecteur unLecteur = new Lecteur(prenom, nom, laBiblio);
     	lecteurRepository.save(unLecteur);
     }
 

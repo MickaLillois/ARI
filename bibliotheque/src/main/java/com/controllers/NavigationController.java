@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class NavigationController {
+	
+	// Ce controller regroupe principalement les redirections sans comportement, comme les menus  
 
     @GetMapping({"/","home"})
     public String home() {

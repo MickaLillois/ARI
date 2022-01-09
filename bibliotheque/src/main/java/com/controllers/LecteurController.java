@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.exceptions.InvalidIdForBibliothqueException;
 import com.exceptions.InvalidStringException;
+import com.models.Bibliotheque;
 import com.models.Lecteur;
+import com.services.BibliothequeService;
 import com.services.LecteurService;
 import com.tools.Tools;
 
@@ -24,6 +27,9 @@ public class LecteurController {
     @Autowired
     private LecteurService lecteurService;
     
+    @Autowired
+	private BibliothequeService bibliothequeService;
+    
     @GetMapping("/getLecteurs")
     public String getLecteurs(Model model) {
     	Iterable<Lecteur> listLecteurs = lecteurService.getLecteurs();
@@ -32,10 +38,16 @@ public class LecteurController {
     }
     
     @PostMapping("/createLecteur")
-    public String createLecteur(@RequestParam String prenom,@RequestParam String nom) throws Exception {
-    	if(Tools.isValidString(prenom) && Tools.isValidString(nom)) {
-    		lecteurService.createLecteur(prenom, nom);
-	        return "home";
+    public String createLecteur(@RequestParam String prenom,@RequestParam String nom, @RequestParam String idBiblio) throws InvalidIdForBibliothqueException, InvalidStringException  {
+    	if(Tools.isLettersString(prenom) && Tools.isLettersString(nom) && Tools.isNumberString(idBiblio)) {
+    		Optional<Bibliotheque> laBiblio = bibliothequeService.getBibliotheque(Long.parseLong(idBiblio));
+    		if(laBiblio.isPresent()) {
+    			lecteurService.createLecteur(prenom, nom, laBiblio.get());
+    	        return "redirect:/getLecteurs";
+    		}
+    		else {
+    			throw new InvalidIdForBibliothqueException();
+    		}
 	    }
 		else {
 			throw new InvalidStringException();
@@ -60,14 +72,21 @@ public class LecteurController {
     }
     
     @PostMapping("/updateLecteur/{id}")
-    public String updateLecteur(@PathVariable("id") String id, @RequestParam String prenom, @RequestParam String nom) throws InvalidStringException {
-    	if(Tools.isValidString(prenom) && Tools.isValidString(nom)) {
+    public String updateLecteur(@PathVariable("id") String id, @RequestParam String prenom, @RequestParam String nom, @RequestParam String idBiblio) throws InvalidStringException, InvalidIdForBibliothqueException {
+    	if(Tools.isLettersString(prenom) && Tools.isLettersString(nom) && Tools.isNumberString(idBiblio)) {
     		Optional<Lecteur> leLecteur = lecteurService.getLecteur(Long.parseLong(id));
             if(leLecteur.isPresent()) {
-            	Lecteur notnullLecteur = leLecteur.get();
-            	notnullLecteur.setPrenom(prenom);
-            	notnullLecteur.setNom(nom);
-            	lecteurService.saveLecteur(notnullLecteur);
+            	Optional<Bibliotheque> laBiblio = bibliothequeService.getBibliotheque(Long.parseLong(idBiblio));
+        		if(laBiblio.isPresent()) {
+        			Lecteur notnullLecteur = leLecteur.get();
+                	notnullLecteur.setPrenom(prenom);
+                	notnullLecteur.setNom(nom);
+                	notnullLecteur.setLaBibliotheque(laBiblio.get());
+                	lecteurService.saveLecteur(notnullLecteur);
+        		}
+        		else {
+        			throw new InvalidIdForBibliothqueException();
+        		}
             }
             return "redirect:/getLecteurs";
     	}

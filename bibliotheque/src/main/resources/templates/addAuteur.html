@@ -6,7 +6,7 @@
 </head>
 <body>
 <h2>Ajouter un auteur</h2>
-<form method="post" action="createAuteur">
+<form method="post" th:action="@{/createAuteur}">
 	<div>
 		<label for="prenom">Prénom : </label> <input type="text" id="prenom" name="prenom">
 	</div>

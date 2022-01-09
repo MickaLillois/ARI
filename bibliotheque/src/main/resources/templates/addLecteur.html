@@ -6,12 +6,15 @@
 </head>
 <body>
 <h2>Ajouter un lecteur</h2>
-<form method="post" action="createLecteur">
+<form method="post" th:action="@{/createLecteur}">
 	<div>
 		<label for="prenom">Prénom : </label> <input type="text" id="prenom" name="prenom">
 	</div>
     <div>
 		<label for="nom">Nom : </label> <input type="text" id="nom" name="nom">
+	</div>
+	<div>
+		<label for="idBiblio">Id Bibliothèque : </label> <input type="text" id="idBiblio" name="idBiblio">
 	</div>
     <button type="submit">Créer</button>
     <br>

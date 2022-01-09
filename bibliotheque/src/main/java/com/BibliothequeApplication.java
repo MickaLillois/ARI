@@ -1,5 +1,6 @@
 package com;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +12,7 @@ import com.repositories.AuteurRepository;
 import com.repositories.BibliothequeRepository;
 import com.repositories.LecteurRepository;
 import com.repositories.LivreRepository;
+import com.services.BibliothequeService;
 
 @SpringBootApplication //(exclude = SecurityAutoConfiguration.class)
 public class BibliothequeApplication {
@@ -18,12 +20,18 @@ public class BibliothequeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BibliothequeApplication.class, args);
 	}
+	
+	@Autowired
+	private BibliothequeService bibli;
 
+	//Ce code me permet d'instancier quelques données d'essai pour la suite
 	@Bean
     public CommandLineRunner init(AuteurRepository auteurRepository, LecteurRepository lecteurRepository, LivreRepository livreRepository, BibliothequeRepository bibliothequeRepository) {
         return args -> {
 
-        	Bibliotheque biblio = new Bibliotheque("Biblio 1");
+        	Bibliotheque biblio = new Bibliotheque("Bibliotheque Universitaire de Lille");
+        	biblio = bibliothequeRepository.save(biblio);
+        	biblio = new Bibliotheque("Bibliotheque Universitaire de Montpellier");
         	biblio = bibliothequeRepository.save(biblio);
         	
             Auteur auteur = new Auteur("Rene", "Grousset");
@@ -35,11 +43,13 @@ public class BibliothequeApplication {
             auteur = new Auteur("Guillaume", "Apollinaire");
             auteur = auteurRepository.save(auteur);
             
-            Lecteur lecteur = new Lecteur("Mickael", "Carceles");
+            Bibliotheque laBiblio = bibli.getBibliotheque(Long.parseLong("1")).get();
+            Lecteur lecteur = new Lecteur("Mickael", "Carceles",laBiblio);
             lecteur = lecteurRepository.save(lecteur);
-            lecteur = new Lecteur("Lucas", "Perpere");
+            laBiblio = bibli.getBibliotheque(Long.parseLong("2")).get();
+            lecteur = new Lecteur("Lucas", "Perpere",laBiblio);
             lecteur = lecteurRepository.save(lecteur);
-            lecteur = new Lecteur("Gauthier", "Henault");
+            lecteur = new Lecteur("Gauthier", "Henault",laBiblio);
             lecteur = lecteurRepository.save(lecteur);
             
         };
