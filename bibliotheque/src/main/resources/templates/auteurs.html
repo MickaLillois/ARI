@@ -18,18 +18,20 @@
                 	<th>Id</th>
                     <th>Prénom</th>
                     <th>Nom</th>
+                    <th>Bibliothèque</th>
                     <th>Modifier</th>
                     <th>Supprimer</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:if="${auteurs.empty}">
-                    <td colspan="5">Aucun auteur en base de données</td>
+                    <td colspan="6">Aucun auteur en base de données</td>
                 </tr>
                 <tr th:each="auteur: ${auteurs}">
                     <td><span th:text="${auteur.id}"> Id </span></td>
                     <td><span th:text="${auteur.prenom}"> Prénom </span></td>
                     <td><span th:text="${auteur.nom}"> Nom </span></td>
+                    <td><span th:text="${auteur.laBibliotheque}"> Bibliothèque </span></td>
                     <td><a th:href="@{/modifierAuteur(id=${auteur.id})}">Modifier</a></td>
                     <td><a th:href="@{/deleteAuteur(id=${auteur.id})}">Supprimer</a></td>
                 </tr>
@@ -37,7 +39,7 @@
         </table>
         
         <br>
-       <a th:href="@{/menu_auteur}">Menu auteur</a> | <a th:href="@{/addAuteur}">Ajouter un auteur</a>
+        <a th:href="@{/menu_auteur}">Menu auteur</a> | <a th:href="@{/addAuteur}">Ajouter un auteur</a>
         
     </body>
 </html>

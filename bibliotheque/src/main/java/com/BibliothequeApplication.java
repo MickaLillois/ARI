@@ -34,16 +34,18 @@ public class BibliothequeApplication {
         	biblio = new Bibliotheque("Bibliotheque Universitaire de Montpellier");
         	biblio = bibliothequeRepository.save(biblio);
         	
-            Auteur auteur = new Auteur("Rene", "Grousset");
+        	Bibliotheque laBiblio = bibli.getBibliotheque(Long.parseLong("1")).get();
+            Auteur auteur = new Auteur("Rene", "Grousset",laBiblio);
             auteur = auteurRepository.save(auteur);
-            auteur = new Auteur("Victor", "Hugo");
+            auteur = new Auteur("Victor", "Hugo",laBiblio);
             auteur = auteurRepository.save(auteur);
-            auteur = new Auteur("Jean", "Racine");
+            laBiblio = bibli.getBibliotheque(Long.parseLong("2")).get();
+            auteur = new Auteur("Jean", "Racine",laBiblio);
             auteur = auteurRepository.save(auteur);
-            auteur = new Auteur("Guillaume", "Apollinaire");
+            auteur = new Auteur("Guillaume", "Apollinaire",laBiblio);
             auteur = auteurRepository.save(auteur);
             
-            Bibliotheque laBiblio = bibli.getBibliotheque(Long.parseLong("1")).get();
+            laBiblio = bibli.getBibliotheque(Long.parseLong("1")).get();
             Lecteur lecteur = new Lecteur("Mickael", "Carceles",laBiblio);
             lecteur = lecteurRepository.save(lecteur);
             laBiblio = bibli.getBibliotheque(Long.parseLong("2")).get();

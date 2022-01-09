@@ -31,7 +31,7 @@
                     <td><span th:text="${lecteur.id}"> Id </span></td>
                     <td><span th:text="${lecteur.prenom}"> Prénom </span></td>
                     <td><span th:text="${lecteur.nom}"> Nom </span></td>
-                    <td><span th:text="${lecteur.laBibliotheque}"> Nom </span></td>
+                    <td><span th:text="${lecteur.laBibliotheque}"> Bibliothèque </span></td>
                     <td><a th:href="@{/modifierLecteur(id=${lecteur.id})}">Modifier</a></td>
                     <td><a th:href="@{/deleteLecteur(id=${lecteur.id})}">Supprimer</a></td>
                 </tr>

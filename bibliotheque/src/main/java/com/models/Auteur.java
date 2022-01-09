@@ -39,6 +39,13 @@ public class Auteur {
 		this.prenom = prenom;
 		this.nom = nom;
 	}
+	
+	public Auteur(String prenom, String nom, Bibliotheque laBibliotheque) {
+		super();
+		this.prenom = prenom;
+		this.nom = nom;
+		this.laBibliotheque = laBibliotheque;
+	}
 
 	public Long getId() {
 		return id;

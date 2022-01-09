@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.models.Auteur;
+import com.models.Bibliotheque;
 import com.repositories.AuteurRepository;
 
 import lombok.Data;
@@ -25,8 +26,8 @@ public class AuteurService {
         return auteurRepository.findAll();
     }
     
-    public void createAuteur(String prenom, String nom) {
-    	Auteur unAuteur = new Auteur(prenom, nom);
+    public void createAuteur(String prenom, String nom, Bibliotheque laBiblio) {
+    	Auteur unAuteur = new Auteur(prenom, nom, laBiblio);
     	auteurRepository.save(unAuteur);
     }
 

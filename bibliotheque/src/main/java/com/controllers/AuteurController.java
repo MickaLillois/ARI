@@ -10,14 +10,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.exceptions.InvalidIdForBibliothqueException;
+import com.exceptions.InvalidStringException;
 import com.models.Auteur;
+import com.models.Bibliotheque;
 import com.services.AuteurService;
+import com.services.BibliothequeService;
+import com.tools.Tools;
 
 @Controller
 public class AuteurController {
 
 	@Autowired
     private AuteurService auteurService;
+	
+	@Autowired
+	private BibliothequeService bibliothequeService;
     
     @GetMapping("/getAuteurs")
     public String getAuteurs(Model model) {
@@ -27,9 +35,20 @@ public class AuteurController {
     }
     
     @PostMapping("/createAuteur")
-    public String createAuteur(@RequestParam String prenom,@RequestParam String nom) {
-        auteurService.createAuteur(prenom, nom);
-        return "home";
+    public String createAuteur(@RequestParam String prenom,@RequestParam String nom, @RequestParam String idBiblio) throws InvalidIdForBibliothqueException, InvalidStringException {
+    	if(Tools.isLettersString(prenom) && Tools.isLettersString(nom) && Tools.isNumberString(idBiblio)) {
+    		Optional<Bibliotheque> laBiblio = bibliothequeService.getBibliotheque(Long.parseLong(idBiblio));
+    		if(laBiblio.isPresent()) {
+    			auteurService.createAuteur(prenom, nom, laBiblio.get());
+    	        return "redirect:/getAuteurs";
+    		}
+    		else {
+    			throw new InvalidIdForBibliothqueException();
+    		}
+	    }
+		else {
+			throw new InvalidStringException();
+		}
     }
     
     
@@ -50,15 +69,27 @@ public class AuteurController {
     }
     
     @PostMapping("/updateAuteur/{id}")
-    public String updateAuteur(@PathVariable("id") String id, @RequestParam String prenom, @RequestParam String nom) {
-    	Optional<Auteur> leAuteur = auteurService.getAuteur(Long.parseLong(id));
-        if(leAuteur.isPresent()) {
-        	Auteur notnullAuteur = leAuteur.get();
-        	notnullAuteur.setPrenom(prenom);
-        	notnullAuteur.setNom(nom);
-        	auteurService.saveAuteur(notnullAuteur);
-        }
-    	return "redirect:/getAuteurs";
+    public String updateAuteur(@PathVariable("id") String id, @RequestParam String prenom, @RequestParam String nom, @RequestParam String idBiblio) throws InvalidIdForBibliothqueException, InvalidStringException {
+    	if(Tools.isLettersString(prenom) && Tools.isLettersString(nom) && Tools.isNumberString(idBiblio)) {
+    		Optional<Auteur> leAuteur = auteurService.getAuteur(Long.parseLong(id));
+            if(leAuteur.isPresent()) {
+            	Optional<Bibliotheque> laBiblio = bibliothequeService.getBibliotheque(Long.parseLong(idBiblio));
+        		if(laBiblio.isPresent()) {
+        			Auteur notnullAuteur = leAuteur.get();
+                	notnullAuteur.setPrenom(prenom);
+                	notnullAuteur.setNom(nom);
+                	notnullAuteur.setLaBibliotheque(laBiblio.get());
+                	auteurService.saveAuteur(notnullAuteur);
+        		}
+        		else {
+        			throw new InvalidIdForBibliothqueException();
+        		}
+            }
+            return "redirect:/getAuteurs";
+    	}
+    	else {
+    		throw new InvalidStringException();
+    	}
     }
 	
 }
