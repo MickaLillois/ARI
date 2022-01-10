@@ -19,7 +19,7 @@ public class BD extends Livre {
 		this.serie = serie;
 	}
 	
-	public BD(String titre, Bibliotheque laBiblio, String serie) {
+	public BD(String titre, String serie, Bibliotheque laBiblio) {
 		super(titre,laBiblio);
 		this.serie = serie;
 	}
@@ -30,5 +30,10 @@ public class BD extends Livre {
 
 	public void setSerie(String serie) {
 		this.serie = serie;
+	}
+
+	@Override
+	public String getLibelle() {
+		return serie + " - " + titre;
 	}
 }

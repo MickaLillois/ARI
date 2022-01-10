@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Modifier un roman</title>
+</head>
+<body>
+<div>
+<form method="post" th:action="@{/updateRoman/{path}(path=${roman.id})}">
+	<div>
+		<label for="titre">Titre : </label> <input type="text" th:value="${roman.titre}" id="titre" name="titre">
+	</div>
+	<div>
+		<label for="idBiblio">Id Bibliothèque : </label> <input type="text" th:value="${roman.laBiblio.id}" id="idBiblio" name="idBiblio">
+	</div>
+    <button type="submit">Modifier</button>
+</form>
+
+</div>
+</body>
+</html>

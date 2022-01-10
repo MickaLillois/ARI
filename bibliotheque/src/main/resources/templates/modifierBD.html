@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Modifier une BD</title>
+</head>
+<body>
+<div>
+<form method="post" th:action="@{/updateBD/{path}(path=${bd.id})}">
+	<div>
+		<label for="titre">Titre : </label> <input type="text" th:value="${bd.titre}" id="titre" name="titre">
+	</div>
+    <div>
+		<label for="serie">Série : </label> <input type="text" th:value="${bd.serie}" id="serie" name="serie">
+	</div>
+	<div>
+		<label for="idBiblio">Id Bibliothèque : </label> <input type="text" th:value="${bd.laBiblio.id}" id="idBiblio" name="idBiblio">
+	</div>
+    <button type="submit">Modifier</button>
+</form>
+
+</div>
+</body>
+</html>

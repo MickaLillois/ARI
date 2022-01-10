@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Créer un roman</title>
+</head>
+<body>
+<h2>Ajouter un roman</h2>
+<form method="post" th:action="@{/createRoman}">
+	<div>
+		<label for="titre">Titre : </label> <input type="text" id="titre" name="titre">
+	</div>
+	<div>
+		<label for="idBiblio">Id Bibliothèque : </label> <input type="text" id="idBiblio" name="idBiblio">
+	</div>
+    <button type="submit">Créer</button>
+</form>
+</body>
+</html>

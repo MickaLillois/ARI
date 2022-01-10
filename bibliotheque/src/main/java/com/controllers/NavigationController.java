@@ -56,6 +56,16 @@ public class NavigationController {
         return "addAuteur";
     }
     
+    @GetMapping("/addBD")
+    public String addBD() {
+        return "addBD";
+    }
+    
+    @GetMapping("/addRoman")
+    public String addRoman() {
+        return "addRoman";
+    }
+    
     @GetMapping("/login")
     public String login() {
     	return "login"; 

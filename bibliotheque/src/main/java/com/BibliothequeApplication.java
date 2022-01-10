@@ -54,6 +54,12 @@ public class BibliothequeApplication {
             lecteur = new Lecteur("Gauthier", "Henault",laBiblio);
             lecteur = lecteurRepository.save(lecteur);
             
+            Livre unLivre = new Roman("Les Miserables",laBiblio);
+            unLivre = livreRepository.save(unLivre);
+            unLivre = new BD("Objectif Lune","Les aventures de Tintin",laBiblio);
+            unLivre = livreRepository.save(unLivre);
+            
+            
         };
     }
 }

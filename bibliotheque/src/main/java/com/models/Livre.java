@@ -19,15 +19,15 @@ public abstract class Livre {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	protected Long id;
 	
-	private String titre;
+	protected String titre;
 	
 	@ManyToMany
-	private List<Auteur> lesAuteurs = new ArrayList<Auteur>();
+	protected List<Auteur> lesAuteurs = new ArrayList<Auteur>();
 	
 	@ManyToOne
-	private Bibliotheque laBiblio;
+	protected Bibliotheque laBiblio;
 	
 	protected Livre() {}
 
@@ -51,6 +51,8 @@ public abstract class Livre {
 		this.id = id;
 	}
 
+	public abstract String getLibelle();
+	
 	public String getTitre() {
 		return titre;
 	}

@@ -17,5 +17,10 @@ public class Roman extends Livre {
 	public Roman(String titre, Bibliotheque laBiblio) {
 		super(titre,laBiblio);
 	}
+
+	@Override
+	public String getLibelle() {
+		return titre;
+	}
 	
 }
